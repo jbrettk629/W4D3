@@ -57,8 +57,10 @@ class CatsController < ApplicationController
   end
   
   def my_cat?
-    #owner owns current cat
-    unless @cat.owner.id == current_user.id
+    #see if cat id is included in current users cat ids
+    # unless @cat.owner.id == current_user.id
+    
+    unless current_user.cats 
       flash[:error] = ["You must own this cat to edit it"]
       redirect_to cats_url
     end
